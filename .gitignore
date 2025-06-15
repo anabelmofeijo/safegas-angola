@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+*.sqlite3
+
+
+# VSCode ou outros editores
+.vscode/
+.idea/
+*.swp
+
+# Dependências locais (não versionar a virtualenv)
+venv/
+env/
+.venv/
+
+# Logs e cache
+*.log
+*.bak
+*.tmp
+*.cache
+
+
+# Arquivos de testes ou temporários
+coverage/
+htmlcov/
+*.cover
+.cache/
+.tox/
+.nox/
+.pytest_cache/
+tests/__pycache__/
+
+# Arquivos criados por sistemas operacionais
+Thumbs.db
