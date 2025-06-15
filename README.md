@@ -131,8 +131,8 @@ Quer melhorar o projeto, sugerir um módulo ou colaborar com código, documenta�
 ## 📬 Contato
 
 **Autor:** KAAS  
-**Email:** kaas.tech@protonmail.com *(exemplo)*  
-**LinkedIn:** [linkedin.com/in/kaas-tech](#) *(coloque o link real)*  
+**Email:** anabelmofeijo@gmail.com   
+**LinkedIn:** [linkedin.com/in/kaas-tech](#)  
 
 ---
 
