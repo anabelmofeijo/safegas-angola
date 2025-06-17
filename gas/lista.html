@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #section{
+            display: block;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista rápida</h1>
+    <section>
+        <input id="input" type="text" placeholder="digite">
+        <button onclick="add()" >Criar</button>
+        <section id="section" >
+            
+        </section>
+    </section>
+</body>
+<script>
+    const item = [1,2,3];
+    let input = document.getElementById("input");
+    function add(){
+        let entrada = input.value;
+        item.forEach(()=>{
+            let x = document.createElement("li");
+            x.textContent(entrada);
+            document.body.appendChild(x)
+        })
+    }
+</script>
+</html>
