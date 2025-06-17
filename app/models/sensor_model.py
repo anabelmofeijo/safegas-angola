@@ -8,10 +8,11 @@ from app import (
 )
 
 
-class SesnorModel(Base):
+class SensorModel(Base):
     __tablename__ = "sensor"
     
-    sensor_id = Column(Integer, primary_key=True ,index=True)
+    id = Column(Integer, primary_key=True, index=True)
+    sensor_id = Column(Integer, index=True)
     sensor_name = Column(String, index=True)
     type_connection = Column(String, index=True)
     location = Column(String, index=True)

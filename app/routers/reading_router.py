@@ -1,6 +1,7 @@
-from app import router
+from app import APIRouter
 
+reading = APIRouter()
 
-@router.get("/")
+@reading.get("/")
 async def running():
     return {"message":"Reading is running"}

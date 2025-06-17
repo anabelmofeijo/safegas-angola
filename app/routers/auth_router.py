@@ -1,6 +1,8 @@
-from app import router
+from app import APIRouter
 
 
-@router.get("/")
+auth = APIRouter()
+
+@auth.get("/")
 async def running():
     return {"message":"Auth is running"}

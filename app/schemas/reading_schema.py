@@ -7,6 +7,7 @@ class LeakType(Enum):
     TRUE = True
 
 class ReadingCreate(BaseModel):
+    id: int
     user_id: int
     gas_level: float
     weight: float
@@ -14,6 +15,7 @@ class ReadingCreate(BaseModel):
     leak: LeakType
     
 class ReadingResponse(BaseModel):
+    id: int
     sensor_id: int
     gas_level: float
     weight: float

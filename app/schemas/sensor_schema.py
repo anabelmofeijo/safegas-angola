@@ -10,12 +10,14 @@ class Status(str, Enum):
     OFF = "desligado"
 
 class SensorRegister(BaseModel):
+    id: int
     sensor_id: int
     sensor_name: str
     type_connection: TypeConnection
     status: Status
 
 class SensorResponse(BaseModel):
+    id: int
     sensor_id : int
     sensor_name: str
     type_connection: TypeConnection

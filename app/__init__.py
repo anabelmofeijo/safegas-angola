@@ -14,5 +14,5 @@ from sqlalchemy import (
 from app.config import Base, db
 
 
-router = APIRouter()
+
 

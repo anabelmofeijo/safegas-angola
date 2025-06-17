@@ -24,11 +24,11 @@ app.add_middleware(
 
 Base.metadata.create_all(bind=engine)
 
-app.include_router(reading_router.router, prefix="/reading", tags=["reading"])
-app.include_router(alert_router.router, prefix="/alert", tags=["alert"])
-app.include_router(auth_router.router, prefix="/auth", tags=["auth"])
-app.include_router(control_router.router, prefix="/control", tags=["control"])
-app.include_router(sensor_router.router, prefix="/sensor", tags=["sensor"])
+app.include_router(reading_router.reading, prefix="/reading", tags=["reading"])
+app.include_router(alert_router.alert, prefix="/alert", tags=["alert"])
+app.include_router(auth_router.auth, prefix="/auth", tags=["auth"])
+app.include_router(control_router.control, prefix="/control", tags=["control"])
+app.include_router(sensor_router.sensor, prefix="/sensor", tags=["sensor"])
 
 @app.get("/")
 async def start():

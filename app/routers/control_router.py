@@ -1,6 +1,7 @@
-from app import router
+from app import  APIRouter
 
+control = APIRouter()
 
-@router.get("/")
+@control.get("/")
 async def running():
     return {"message":"Control is running"}

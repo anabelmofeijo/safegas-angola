@@ -1,6 +1,9 @@
-from app import router
+from app import APIRouter
 
 
-@router.get("/")
+alert = APIRouter()
+
+
+@alert.get("/")
 async def running():
-    return {"message":"Alert is running"}
+    return {"message":"alert is running"}

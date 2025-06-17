@@ -1,6 +1,8 @@
-from app import router
+from app import APIRouter
 
 
-@router.get("/")
+sensor = APIRouter()
+
+@sensor.get("/")
 async def running():
     return {"message":"sensor is running"}
