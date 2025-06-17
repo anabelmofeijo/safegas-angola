@@ -1,4 +1,4 @@
-from app import BaseModel, Enum
+from app import BaseModel, Enum, datetime
 
 
 class TyperMessage(str, Enum):
@@ -6,9 +6,12 @@ class TyperMessage(str, Enum):
     OFF = "desligar"
 
 class ControlOn(BaseModel):
+    id: int
+    user_id: int
     message: TyperMessage.ON
     
 class ControlOff(BaseModel):
+    id: int
+    user_id: int
     message: TyperMessage.OFF
-    
-    
+    date: datetime

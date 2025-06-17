@@ -3,6 +3,7 @@ from app import EmailStr
 
 
 class AuthRegister(BaseModel):
+    id: int
     name: str
     email: EmailStr
     password: str

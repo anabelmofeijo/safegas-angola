@@ -1,22 +1,23 @@
-from pydantic import BaseSettings
 
-class Settings(BaseSettings):
-    PROJECT_NAME: str = "SafeGas Angola"
-    VERSION: str = "2.0"
-    
-    # MongoDB
-    MONGODB_URI: str = "mongodb://localhost:27017"
-    MONGODB_DB_NAME: str = "safegas"
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+import os
 
-    # JWT
-    SECRET_KEY: str = "supersecreta"
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+# Caminho absoluto da raiz do projeto
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    # CORS
-    ALLOWED_ORIGINS: list[str] = ["*"]
+# Caminho da pasta do banco
+DB_DIR = os.path.join(BASE_DIR, 'app', 'db')  
+os.makedirs(DB_DIR, exist_ok=True)  # Cria a pasta se não existir
 
-    class Config:
-        env_file = ".env"
+# Caminho completo do banco
+DATABASE_URL = f"sqlite:///{os.path.join(DB_DIR, 'database.db')}"
 
-settings = Settings()
+# Engine com configuração especial para SQLite
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+db = SessionLocal()
+
+Base = declarative_base()

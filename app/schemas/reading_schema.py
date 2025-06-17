@@ -7,16 +7,16 @@ class LeakType(Enum):
     TRUE = True
 
 class ReadingCreate(BaseModel):
-    sensor_id: int
+    user_id: int
     gas_level: float
-    cylinder_weight: float
+    weight: float
     temperature: float
     leak: LeakType
     
 class ReadingResponse(BaseModel):
     sensor_id: int
     gas_level: float
-    cylinder_weight: float
+    weight: float
     temperature : float
     leak: LeakType
     datetime: datetime
