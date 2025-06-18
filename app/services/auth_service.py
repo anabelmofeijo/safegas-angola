@@ -1,5 +1,5 @@
 from app.models.auth_model import AuthModel
-from config import SessionLocal
+from app.config import SessionLocal
 
 
 class AuthDatabase:
