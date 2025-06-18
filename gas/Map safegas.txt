@@ -1,6 +1,0 @@
-Map safegas
-
-- ligar e desligar o fornecimento
--template mobile
--tela auth
-Exibir novidades com js  ofuscando a tela? popUp
