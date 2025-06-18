@@ -1,5 +1,5 @@
 from app.models.reading_model import ReadingModel
-from config import SessionLocal
+from app.config import SessionLocal
 
 
 class ReadingService:

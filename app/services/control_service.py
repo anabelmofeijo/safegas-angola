@@ -1,5 +1,5 @@
 from app.models.alert_model import AlertModel
-from config import SessionLocal
+from app.config import SessionLocal
 
 
 class ControlDatabase:
