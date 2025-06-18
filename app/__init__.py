@@ -9,7 +9,8 @@ from sqlalchemy import (
     Integer,
     String,
     Boolean,
-    DateTime
+    DateTime,
+    Float
 )
 from app.config import Base, db
 

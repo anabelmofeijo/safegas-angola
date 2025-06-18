@@ -8,10 +8,10 @@ class TyperMessage(str, Enum):
 class ControlOn(BaseModel):
     id: int
     user_id: int
-    message: TyperMessage.ON
+    message: TyperMessage
     
 class ControlOff(BaseModel):
     id: int
     user_id: int
-    message: TyperMessage.OFF
+    message: TyperMessage
     date: datetime

@@ -1,18 +1,15 @@
-from app import BaseModel, Enum
+from app import BaseModel
 from app import datetime
 
 
-class LeakType(Enum):
-    FALSE = False
-    TRUE = True
+
 
 class ReadingCreate(BaseModel):
-    id: int
     user_id: int
     gas_level: float
     weight: float
     temperature: float
-    leak: LeakType
+    leak: bool
     
 class ReadingResponse(BaseModel):
     id: int
@@ -20,5 +17,5 @@ class ReadingResponse(BaseModel):
     gas_level: float
     weight: float
     temperature : float
-    leak: LeakType
+    leak: bool
     datetime: datetime

@@ -1,9 +1,6 @@
 from app import APIRouter
 from app.services.reading_service import ReadingService
-from app.schemas.reading_schema import (
-    ReadingCreate,
-    ReadingResponse
-)
+from app.schemas.reading_schema import ReadingCreate
 
 reading = APIRouter()
 
@@ -14,7 +11,7 @@ async def running():
 @reading.post("/post/")
 async def add_reading(data: ReadingCreate):
     service = ReadingService()
-    response = service.ReadingAdd(data)
+    response = service.ReadingAdd(data.dict())
     return response
 
 @reading.get("/list/")
@@ -34,3 +31,9 @@ async def reading_user_by_id(id: int):
     service = ReadingService()
     response = service.ReadingUserById(user_id=id)
     return response
+
+@reading.delete("/delete/{id}")
+async def delete_reading(id: int):
+    service = ReadingService()
+    response = service.DeleteReading(id)
+    return response 

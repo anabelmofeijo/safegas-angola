@@ -4,7 +4,8 @@ from app import (
     Column,
     datetime,
     Boolean,
-    DateTime
+    DateTime,
+    Float
 )
 
 
@@ -13,8 +14,8 @@ class ReadingModel(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, index=True)
-    gas_level = Column(Integer, index=True)
-    weight = Column(Integer, index=True)
-    temparature = Column(Integer, index=True)
+    gas_level = Column(Float)
+    weight = Column(Float)
+    temperature = Column(Float)
     leak = Column(Boolean, index=True)
     date = Column(DateTime, default=datetime.utcnow())

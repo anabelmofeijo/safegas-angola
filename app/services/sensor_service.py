@@ -1,5 +1,5 @@
 from app.models.sensor_model import SensorModel
-from config import SessionLocal
+from app.config import SessionLocal
 
 
 class SensorService:
@@ -27,3 +27,12 @@ class SensorService:
             sensors = db.query(SensorModel).all()
             if sensors:
                 return sensors
+            return {"error":"there is not sensors in database"}
+            
+    @staticmethod
+    def FindSensor(sensor_name: str):
+        with SessionLocal() as db:
+            sensor = db.query(SensorModel).get(sensor_name)
+            if sensor:
+                return sensor
+            return {"error": "sensor not found"}

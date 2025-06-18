@@ -14,7 +14,6 @@ class AlertCreate(BaseModel):
     message: str
     
 class Alert(BaseModel):
-    id: int
     sensor_id: int
     type: AlertType
     message: str

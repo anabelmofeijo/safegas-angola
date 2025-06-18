@@ -37,3 +37,13 @@ class ReadingService:
             if response:
                 return response
             return {"error": "user not found"}
+        
+    @staticmethod
+    def DeleteReading(id: int):
+        with SessionLocal() as db:
+            reading = db.query(ReadingModel).get(id)
+            if reading:
+                db.delete(reading)
+                db.commit()
+                return {"message": "reading deleted"}
+            return {"error": "reading not found!"}
