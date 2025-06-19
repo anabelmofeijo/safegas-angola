@@ -12,7 +12,7 @@ async def running():
 @sensor.post("/register/")
 async def sensor_register(data: SensorRegister):
     service = SensorService()
-    response = service.SensorAdd(data=data)
+    response = service.SensorAdd(data=data.dict())
     return response
 
 @sensor.get("/list/")

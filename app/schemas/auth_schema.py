@@ -3,16 +3,10 @@ from app import EmailStr
 
 
 class AuthRegister(BaseModel):
-    id: int
     name: str
     email: EmailStr
-    password: str
-    datetime: datetime
+    password: str 
     
 class AuthLogin(BaseModel):
     email: EmailStr
     password: str
-    
-class AuthResponse(BaseModel):
-    access_token: str
-    token_type: str = "bearer"

@@ -21,13 +21,13 @@ async def list_user():
 @auth.post("/post/")
 async def create_user(data: AuthRegister):
     service = AuthDatabase()
-    response = service.AuthAdd(data)
+    response = service.AuthAdd(data.dict())
     return response
 
 @auth.post("/login/")
 async def login(data: AuthLogin):
     service = AuthService()
-    response = service.AuthLogIn(data.email)
+    response = service.AuthLogIn(data)
     return response
 
 @auth.delete("/delete/{id}")

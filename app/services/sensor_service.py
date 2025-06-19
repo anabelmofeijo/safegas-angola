@@ -18,7 +18,9 @@ class SensorService:
         with SessionLocal() as db:
             response = db.query(SensorModel).get(id)
             if response:
-                return response
+                db.delete(response)
+                db.commit()
+                return {"message": "user deleted successfully"}
             return {"error":"sensor not found"}
         
     @staticmethod
@@ -32,7 +34,7 @@ class SensorService:
     @staticmethod
     def FindSensor(sensor_name: str):
         with SessionLocal() as db:
-            sensor = db.query(SensorModel).get(sensor_name)
+            sensor = db.query(SensorModel).filter(SensorModel.sensor_name == sensor_name).first()
             if sensor:
                 return sensor
             return {"error": "sensor not found"}

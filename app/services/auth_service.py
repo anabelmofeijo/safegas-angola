@@ -24,9 +24,9 @@ class AuthDatabase:
             return {"error": "User not found"}
 
     @staticmethod
-    def AuthFind(email):
+    def AuthFind(data: dict):
         with SessionLocal() as db:
-            user = db.query(AuthModel).get(email)
+            user = db.query(AuthModel).filter(AuthModel.email == data.email, AuthModel.password == data.password).first()
             if user:
                 return user
             return {"error": "User not found"}

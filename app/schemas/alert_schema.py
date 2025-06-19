@@ -1,4 +1,4 @@
-from app import BaseModel, Literal, datetime
+from app import BaseModel, datetime
 from app import Enum
 
 
@@ -9,16 +9,16 @@ class AlertType(str, Enum):
     OTHER = "outro"
 
 class AlertCreate(BaseModel):
-    sensor_id: int
+    user_id: int
     type: AlertType
     message: str
     
 class Alert(BaseModel):
-    sensor_id: int
+    user_id: int
     type: AlertType
     message: str
     resolved: bool
-    timestamp: datetime
+    alerted_at: datetime
 
 class AlertResolvedResponse(BaseModel):
     message: str

@@ -4,13 +4,15 @@ from pydantic import BaseModel, EmailStr
 from typing import Literal, Optional
 from datetime import datetime
 from enum import Enum
+from sqlalchemy.orm import relationship
 from sqlalchemy import (
     Column, 
     Integer,
     String,
     Boolean,
     DateTime,
-    Float
+    Float,
+    ForeignKey
 )
 from app.config import Base, db
 

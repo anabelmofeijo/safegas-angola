@@ -1,9 +1,6 @@
 from app import  APIRouter
 from app.services.control_service import ControlDatabase
-from app.schemas.control_schema import (
-    ControlOff,
-    ControlOn
-)
+from app.schemas.control_schema import ControlOnOff
 
 control = APIRouter()
 
@@ -11,14 +8,14 @@ control = APIRouter()
 async def running():
     return {"message":"Control is running"}
 
-@control.post("/on/")
-async def control_on(data: ControlOn):
+@control.post("/signal/")
+async def control_on(data: ControlOnOff):
     service = ControlDatabase()
-    response = service.ControlAdd(data)
+    response = service.ControlAdd(data.dict())
     return response
 
-@control.post("/off/")
-async def control_off(data: ControlOff):
+@control.get("/list/")
+async def control_list_all():
     service = ControlDatabase()
-    response = service.ControlAdd()
-    return response
+    response = service.ControlListAll()
+    return response 

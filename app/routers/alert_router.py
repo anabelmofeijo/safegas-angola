@@ -1,6 +1,6 @@
 from app import APIRouter
 from app.services.alert_service import AlertService, AlertDatabase
-from app.schemas.alert_schema import Alert
+from app.schemas.alert_schema import AlertCreate
 
 
 alert = APIRouter()
@@ -17,9 +17,9 @@ async def create():
     return response
 
 @alert.post("/post/")
-async def post_alerts(alert: Alert):
+async def post_alerts(alert: AlertCreate):
     service = AlertDatabase()
-    response = service.AlertAdd(alert_data=alert)
+    response = service.AlertAdd(alert_data=alert.dict())
     return response
 
 @alert.delete("/delete/{id}")

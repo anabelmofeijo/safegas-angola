@@ -4,7 +4,8 @@ from app import (
     String,
     Column,
     datetime,
-    DateTime
+    DateTime,
+    relationship
 )
 
 
@@ -15,6 +16,10 @@ class AuthModel(Base):
     name = Column(String, index=True)
     email = Column(String, index=True)
     password = Column(String, index=True)
-    created_at = Column(DateTime, default=datetime.utcnow())
-    
-    
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    sensors = relationship("SensorModel", back_populates="user", cascade="all, delete")
+    readings = relationship("ReadingModel", back_populates="user", cascade="all, delete")
+    alerts = relationship("AlertModel", back_populates="user", cascade="all, delete")
+    controls = relationship("ControlModel", back_populates="user", cascade="all, delete")
+   
