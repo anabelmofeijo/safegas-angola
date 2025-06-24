@@ -6,7 +6,7 @@ from app import datetime
 
 class ReadingCreate(BaseModel):
     user_id: int
-    gas_level: float
+    gas_level: str
     weight: float
     temperature: float
     leak: bool
@@ -14,7 +14,7 @@ class ReadingCreate(BaseModel):
 class ReadingResponse(BaseModel):
     id: int
     sensor_id: int
-    gas_level: float
+    gas_level: str
     weight: float
     temperature : float
     leak: bool

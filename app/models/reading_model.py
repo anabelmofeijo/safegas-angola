@@ -6,6 +6,7 @@ from app import (
     Boolean,
     DateTime,
     Float,
+    String,
     relationship,
     ForeignKey
 )
@@ -17,7 +18,7 @@ class ReadingModel(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("auth.id"))
     sensor_id = Column(Integer, ForeignKey("sensor.id"))
-    gas_level = Column(Float)
+    gas_level = Column(String)
     weight = Column(Float)
     temperature = Column(Float)
     leak = Column(Boolean, index=True)
