@@ -36,34 +36,58 @@ const SENSOR_DELETE = (id) => `${API_BASE}/sensor/delete/${id}`;
 
 
 
-// async function getApi(){
-//     try {
-//         let url = await fetch(SENSOR_LIST)
-//         if(!url.ok){
-//             throw new Error(`Estado api ${url.status}`)
-//         }
-//         let dadosApi = await url.json();
-//         console.log(dadosApi)
-//       } catch (error) {
-//         console.log("ERRO NA REQUISIÇÃO DA API")
-//     }
-//   }
-//   getApi();
-
-
-async function listarUsuarios() {
-  try {
-    const resposta = await fetch(AUTH_LIST);
-    const usuarios = await resposta.json();
-    console.log(usuarios)
-
-    //console.log("👥 Lista de usuários:");
-    //usuarios.forEach(usuario => {
-      console.log(`ID: ${usuario.id}, Nome: ${usuario.name}, Email: ${usuario.email}`);
-    //});
-
-  } catch (erro) {
-    console.error(" Erro ao buscar usuários:", erro);
+async function getApi(){
+    try {
+        let url = await fetch(READING_LIST)
+        if(!url.ok){
+            throw new Error(`Estado api ${url.status}`)
+        }
+        let dadosApi = await url.json();
+        console.log(dadosApi)
+      } catch (error) {
+        console.log("ERRO NA REQUISIÇÃO DA API")
+    }
   }
-}
-listarUsuarios()
+  getApi();
+
+
+// async function listarUsuarios() {
+//   try {
+//     const resposta = await fetch(AUTH_LIST);
+//     const usuarios = await resposta.json();
+//     console.log(usuarios)
+
+//     //console.log("👥 Lista de usuários:");
+//     //usuarios.forEach(usuario => {
+//       console.log(`ID: ${usuario.id}, Nome: ${usuario.name}, Email: ${usuario.email}`);
+//     //});
+
+//   } catch (erro) {
+//     console.error(" Erro ao buscar usuários:", erro);
+//   }
+// }
+// listarUsuarios()
+
+
+
+// async function pegarUltimaLeitura() {
+//   try {
+//     const resposta = await fetch(READING_LIST);
+//     const leituras = await resposta.json();
+
+//     if (Array.isArray(leituras) && leituras.length > 0) {
+//       const ultimaLeitura = leituras[leituras.length - 1]; // pega o último item do array
+//       console.log("📦 Última leitura:", ultimaLeitura);
+
+//       // Exemplo: exibir em elementos HTML
+//       document.getElementById("valorGas").textContent = ultimaLeitura.gas_level;
+//       document.getElementById("valorTemp").textContent = ultimaLeitura.temperature;
+//       document.getElementById("valorPeso").textContent = ultimaLeitura.weight;
+//       document.getElementById("valorVazamento").textContent = ultimaLeitura.leak ? "Sim" : "Não";
+//     } else {
+//       console.log("⚠️ Nenhuma leitura encontrada.");
+//     }
+//   } catch (erro) {
+//     console.error("❌ Erro ao buscar leituras:", erro);
+//   }
+// }

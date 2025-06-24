@@ -65,73 +65,48 @@ async function listarSensores() {
 listarSensores();
 
 
-/*OBTER VALOR DO SENSOR MQ2 */
-async function obterMq2() {
+/*OBTER VALOR DOS SENSORES */
+// async function lerSensor() {
+//   try {
+//     let url = await fetch(READING_LIST);
+//     if (!url.ok) {
+//       throw new Error(`Estado api ${url.status}`);
+//     }
+//     let dadosApi = await url.json();
+//     console.log(dadosApi[0].status);
+//     document.getElementById("sensor1").innerHTML = dadosApi[99].gas_level;
+//     document.getElementById("sensor2").innerHTML = dadosApi[99].weight;
+//     document.getElementById("sensor3").innerHTML = dadosApi[99].leak;
+//   } catch (error) {
+//     console.log("ERRO NA REQUISIÇÃO DA API");
+//   }
+// }
+// setInterval(lerSensor,1000)
+
+
+
+async function pegarUltimaLeitura() {
   try {
-    let url = await fetch(SENSOR_LIST);
-    if (!url.ok) {
-      throw new Error(`Estado api ${url.status}`);
-    }
-    let dadosApi = await url.json();
-    console.log(dadosApi[0].status);
-    document.getElementById("fuga").innerHTML = dadosApi[0].status;
-    document.getElementById("sensor1").innerHTML = dadosApi[0].sensor_name;
-  } catch (error) {
-    console.log("ERRO NA REQUISIÇÃO DA API");
-  }
-}
-obterMq2();
+    const resposta = await fetch(READING_LIST);
+    const leituras = await resposta.json();
 
+    if (Array.isArray(leituras) && leituras.length > 0) {
+      const ultimaLeitura = leituras[leituras.length - 1]; // pega o último item do array
+      console.log("📦 Última leitura:", ultimaLeitura);
 
-/*OBTER VALOR DO SENSOR PESO */
-async function obterPeso() {
-  try {
-    let url = await fetch(SENSOR_LIST);
-    if (!url.ok) {
-      throw new Error(`Estado api ${url.status}`);
-    }
-    let dadosApi = await url.json();
-    document.getElementById("gasRestante").innerHTML = dadosApi[1].status;
-    document.getElementById("sensor2").innerHTML = dadosApi[1].sensor_name;
-  } catch (error) {
-    console.log("ERRO NA REQUISIÇÃO DA API");
-  }
-}
-
-obterPeso();
-
-/**ENVIAR ALERTA DE FOGO */
-async function enviarAlerta() {
-  const alerta = {
-    user_id: 1,
-    message: "Fogo detetado!!!",
-    type: "fogo"
-  };
-
-  try {
-    const resposta = await fetch(ALERT_POST, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(alerta)
-    });
-
-    const dados = await resposta.json();
-
-    if (resposta.ok) {
-      console.log("Alerta enviado:", dados);
-      alert("Alerta enviado com sucesso!");
+      // Exemplo: exibir em elementos HTML
+      document.getElementById("sensor1").textContent = ultimaLeitura.gas_level;
+      document.getElementById("sensor2").textContent = ultimaLeitura.weight;
+      document.getElementById("sensor3").textContent = ultimaLeitura.leak ? "Sim" : "Não";
     } else {
-      console.error("Erro no envio:", dados.message || dados);
-      alert("Erro ao enviar alerta.");
+      console.log(" Nenhuma leitura encontrada.");
     }
-
   } catch (erro) {
-    console.error("Erro na conexão:", erro);
-    alert("Erro de conexão com a API.");
+    console.error(" Erro ao buscar leituras:", erro);
   }
 }
+setInterval(pegarUltimaLeitura,1000);
+
 
 
 /**FUNÇÃO DE TROCA DO ESTADO (botão) */
@@ -202,3 +177,5 @@ async function deletarUsuario() {
     alert("Erro de conexão ao tentar excluir usuário.");
   }
 }
+
+//DEV SETH LUSSUEKI
