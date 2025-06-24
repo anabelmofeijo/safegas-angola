@@ -1,36 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de Usuários e Entrada</title>
     <style>
-        #section{
-            display: block;
+        #section {
             border: 1px solid;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f0f0f0;
+            margin-bottom: 5px;
+            padding: 5px;
         }
     </style>
 </head>
+
 <body>
-    <h1>Lista rápida</h1>
-    <section>
-        <input id="input" type="text" placeholder="digite">
-        <button onclick="add()" >Criar</button>
-        <section id="section" >
-            
-        </section>
-    </section>
+    <h1>Usuários da API</h1>
+    <ul id="listaUsuarios"></ul>
+
+    <hr>
+
+    <script>
+        // Chamada à API
+        async function getApi() {
+            try {
+                let url = await fetch('https://safegas-angola.onrender.com/auth/list/')
+                if (!url.ok) {
+                    throw new Error(`Estado api ${url.status}`)
+                }
+                let dadosApi = await url.json();
+                console.log(dadosApi);
+
+                let lista = document.getElementById("listaUsuarios");
+                if (Array.isArray(dadosApi)) {
+                    dadosApi.forEach(user => {
+                        let li = document.createElement("li");
+                        li.textContent = user.name+" - "+user.id; // ou user.nome se vier objeto
+                        lista.appendChild(li);
+                    });
+                } else {
+                    lista.innerHTML = "<li>Dados inválidos da API</li>";
+                }
+
+            } catch (error) {
+                console.log("ERRO NA REQUISIÇÃO DA API");
+                document.getElementById("listaUsuarios").innerHTML = "<li>Erro na requisição</li>";
+            }
+        }
+
+        getApi();
+
+        // Lista local
+        function add() {
+            let entrada = document.getElementById("input").value;
+            if (!entrada) return;
+            let li = document.createElement("li");
+            li.textContent = entrada;
+            document.getElementById("section").appendChild(li);
+            document.getElementById("input").value = "";
+        }
+    </script>
 </body>
-<script>
-    const item = [1,2,3];
-    let input = document.getElementById("input");
-    function add(){
-        let entrada = input.value;
-        item.forEach(()=>{
-            let x = document.createElement("li");
-            x.textContent(entrada);
-            document.body.appendChild(x)
-        })
-    }
-</script>
 </html>
