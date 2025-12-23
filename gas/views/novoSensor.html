@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novo Sensor-safegas</title>
+  <link rel="stylesheet" href="/style/style.css" />
+</head>
+<style>
+  button {
+    color: white;
+    border-radius: 4px;
+    width: 20%;
+    padding: 1%;
+    background-color: #2979ff;
+    border: none;
+    cursor: pointer;
+  }
+
+  input {
+    width: 20%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="logo">⛽</div>
+      <nav>
+        <ul>
+          <a href="/index.htm">🏠</a>
+          <a href="/views/tool.html">📅</a>
+          <a class="link-hist" href="#">📈</a>
+          <a class="link-hist" href="/views/definicoes.html">⚙️</a>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="title">NOVO SENSOR</div>
+        <input type="text" placeholder="procurar..." />
+        <div class="date" id="date"></div>
+        <div class="user" id="username"></div>
+        <button class="refresh" onclick="refresh()">🔄 Refresh</button>
+      </header>
+      <div class="card">
+        <form id="sensorForm">
+          <label for="name">Nome do sensor</label><br>
+          <input type="text" id="sensorName" placeholder="exemplo chama " required><br><br>
+
+          <label for="type_connection">Tipo de conexão</label><br>
+          <select name="type_connection" id="type_connection">
+            <option value="wi-fi">Wi-Fi</option>
+            <option value="cabeada">Cabeada</option>
+          </select><br><br>
+
+          <button type="submit">Adicionar</button><br>
+        </form>
+
+      </div>
+
+    </main>
+  </div>
+  <script>
+    const nome = localStorage.getItem("usuarioNome");
+    document.getElementById("username").textContent = nome || "Visitante";
+
+    /*CRIAR NOVO SENSOR */
+    document.getElementById("sensorForm")?.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      let nome = document.getElementById("sensorName").value;
+      const conexao = document.getElementById("type_connection").value;
+      const userId = localStorage.getItem("usuarioId");
+
+      const sensor = {
+        user_id: userId,
+        sensor_name: nome,
+        type_connection: conexao,
+        status: "ligado",
+        sensor_type: "standard",
+        location: "standard"
+      };
+
+      try {
+        const resposta = await fetch(SENSOR_REGISTER, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(sensor)
+        });
+
+        const dados = await resposta.json();
+
+        if (resposta.ok) {
+          alert("Sensor registrado com sucesso!");
+          console.log("Sensor registrado:", dados);
+          window.location.href = '/views/list.html';
+        } else {
+          alert("Erro ao registrar sensor.");
+          console.error("Erro:", dados.message || dados);
+        }
+
+      } catch (erro) {
+        console.error("Erro na conexão:", erro);
+        alert("Impossível adicionar sensor.");
+      }
+    });
+  </script>
+  <script src="/script/script.js"></script>
+  <script src="/script/script2.js"></script>
+</body>
+
+</html>

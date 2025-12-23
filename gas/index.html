@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard-safegas</title>
+  <link rel="stylesheet" href="/style/style.css" />
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="logo">⛽</div>
+      <nav>
+        <ul>
+          <a href="/index.htm">🏠</a>
+          <a href="/views/tool.html">📅</a>
+          <a class="link-hist" id="hist" href="#">📈</a>
+          <a class="link-hist" href="/views/definicoes.html">⚙️</a>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="title">DASHBOARD</div>
+        <input type="text" placeholder="procurar..." />
+        <div class="date" id="date"></div>
+        <div class="user" id="username"></div>
+        <button class="refresh" onclick="refresh()">🔄 Refresh</button>
+      </header>
+
+      <section class="cards">
+        <div class="card">
+          <!-- SENSOR DE GÁS -->
+          <h3 id="" >Fuga</h3>
+          <p id="sensor1">procurando...</p>
+          <!-- <span id="" class="positive">+18.6%</span> -->
+        </div>
+
+        <div class="card">
+          <!-- SENSOR DE PESO -->
+          <h3 id="">Gás restante</h3>
+          <p id="sensor2">procurando...</p>
+          <span class="negative">-2.1%</span>
+        </div>
+        <div class="card">
+          <!-- SENSOR DE PESO -->
+          <h3 id="">Alerta de incêndio</h3>
+          <p id="sensor3">procurando...</p>
+          <!-- <span class="positive">-2.1%</span> -->
+        </div>
+
+        <div class="card">
+          <h3>Fonte</h3>
+          <p><img class="icon" id="icon" onclick="troca()" src="/static/off-button.png" alt=""></p>
+          <span class="positive"></span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+
+    // Verifica se o usuário está autenticado
+    const usuarioId = localStorage.getItem("usuarioId");
+
+    if (!usuarioId) {
+      // Não está logado, redireciona para o login
+      alert(" Acesso negado. Faça login primeiro.");
+      window.location.href = "/views/login.html"; // ou onde está sua página de login
+    }
+
+    const nome = localStorage.getItem("usuarioNome");
+    document.getElementById("username").textContent = nome || "Visitante";
+  </script>
+  <script src="/script/script.js"></script>
+  <script src="/script/script2.js"></script>
+</body>
+
+</html>

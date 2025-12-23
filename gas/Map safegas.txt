@@ -1,0 +1,11 @@
+                                                                                                                    Map safegas
+
+- ligar e desligar o fornecimento ?
+- Receber valores dos sensores
+- Conectar LCD
+- Redutor e a mangueira
+
+reading/list obter os dados dos sensores
+
+100%
+- Exibir novidades com js

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login de Usuário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2979ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #2979ff;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    a {
+      color: #2979ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form id="loginForm">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email" required /><br><br>
+    <input type="password" id="senha" placeholder="Senha" required /><br><br>
+    <button type="submit">Entrar</button>
+    <p>Não tem uma conta ? <br> <a href="/views/registro.html">Registra-se aqui</a></p><br>
+    <p id="mensagem"></p>
+  </form>
+  <script>
+  const AUTH_LOGIN = "https://safegas-angola.onrender.com/auth/login/";
+
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    try {
+      const resposta = await fetch(AUTH_LOGIN, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          password: senha
+        })
+      });
+
+      const dados = await resposta.json();
+
+      // ✅ Verifica se a resposta tem erro
+      if (dados.error === "User not found") {
+        document.getElementById("mensagem").textContent = " Usuário não encontrado!";
+        return;
+      }
+
+      // ✅ Verifica se os dados estão corretos e a senha bate
+      if (dados.password === senha) {
+        localStorage.setItem("usuarioNome", dados.name);
+        localStorage.setItem("usuarioId", dados.id);
+        localStorage.setItem("usuarioEmail", dados.email);
+
+        document.getElementById("mensagem").textContent = " Login efetuado com sucesso!";
+        // Redirecionar ou abrir painel
+        window.location.href = "/index.htm";
+      } else {
+        document.getElementById("mensagem").textContent = " Senha incorreta!";
+      }
+
+    } catch (erro) {
+      console.error(erro);
+      document.getElementById("mensagem").textContent = "⚠️ Erro de conexão com a API.";
+    }
+  });
+</script>
+</body>
+
+</html>

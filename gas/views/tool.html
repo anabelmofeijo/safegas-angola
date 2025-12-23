@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preferências-safegas</title>
+  <link rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="logo">⛽</div>
+      <nav>
+          <ul>
+            <a href="/index.htm">🏠</a>
+            <a href="/views/tool.html">📅</a>
+          <a class="link-hist" href="#" id="hist" >📈</a>
+          <a class="link-hist" href="/views/definicoes.html">⚙️</a>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="title">PREFERÊNCIAS</div>
+        <input type="text" placeholder="procurar..." />
+        <div class="date" id="date"></div>
+        <div class="user" id="username"></div>
+        <button class="refresh">🔄 Refresh</button>
+      </header>
+
+      <section class="cards">
+        <div class="card">
+          <a href="/views/novoSensor.html"><p>Adicionar Sensor +</p></a>
+          <!-- <span class="positive">+18.6%</span> -->
+        </div>
+        <div class="card">
+          <p>Excluir sensor
+          </p>
+          <!-- <span class="positive">+18.6%</span> -->
+        </div>
+        <div class="card">
+            <a href="/views/list.html"><p>Ver todos sensores</p></a>
+          <!-- <span class="positive">+18.6%</span> -->
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+  const nome = localStorage.getItem("usuarioNome");
+  document.getElementById("username").textContent = nome || "Visitante";
+  </script>
+  <script src="/script/script.js" ></script>
+  <script src="/script/script2.js" ></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sensores-safegas</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <style>
+        input {
+            padding: 1%;
+            border-radius: 4px;
+        }
+
+        button {
+            color: white;
+            border-radius: 4px;
+            width: 20%;
+            padding: 1%;
+            background-color: #2979ff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="logo">⛽</div>
+            <nav>
+                <ul>
+                    <a href="/index.htm">🏠</a>
+                    <a href="/views/tool.html">📅</a>
+                    <a class="link-hist" href="#">📈</a>
+                    <a class="link-hist" href="/views/definicoes.html">⚙️</a>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="title">SENSORES</div>
+                <input type="text" placeholder="procurar..." />
+                <div class="date" id="date"></div>
+                <div class="user" id="username"></div>
+                <button class="refresh">🔄 Refresh</button>
+            </header>
+            <h2>📡 Sensores Registrados</h2>
+            <div class="card" id="listaSensores"></div>
+            <br><br>
+            <button onclick="listarSensores()">Atualizar Lista</button>
+        </main>
+    </div>
+    <script>
+        const nome = localStorage.getItem("usuarioNome");
+        document.getElementById("username").textContent = nome || "Visitante";
+    </script>
+    <script src="/script/script.js"></script>
+    <script src="/script/script2.js"></script>
+</body>
+
+</html>
